@@ -24,7 +24,7 @@
                 "c5.large",
                 "c5n.large"
             ],
-            "Description": "Enter instance type; default is t3.small."
+            "Description": "Enter instance type; default is t3.small"
         },
         "Keypair": {
             "Type": "AWS::EC2::KeyPair::KeyName",
@@ -55,7 +55,7 @@
         },
         "LogGroup": {
             "Type": "String",
-            "Description": "Log Group",
+            "Description": "CloudWatch Log Group",
             "MinLength": "1",
             "AllowedPattern" : "^[a-zA-Z0-9]*$",
             "ConstraintDescription": "must be a name of an existing CloudWatch Log Group"
@@ -104,7 +104,7 @@
                                 "command": "suricata-update"
                             },
                             "6-enable-hourly-updates": {
-                                "command":  "echo \"10 * * * * suricata-update\" | crontab"
+                                "command":  "echo \"10 * * * * suricata-update && suricatasc -c reload-rules\" | crontab"
                             },
                             "7-run-suricata": {
                                 "command": "suricata --set decoder.vxlan.enabled=true -k none -D -i eth0 udp port 4789"
